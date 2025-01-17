@@ -16,20 +16,16 @@ namespace Inventory_Management_System
         public static void AddItems()
         {
             // Getting the ID of the item that will be added
-            Console.WriteLine("Please enter the ID of the item you want to add to the inventory: ");
-            int id = int.Parse(Console.ReadLine());
+            int id = int.Parse(SafeNullInput("Please enter the ID of the item you want to add to the inventory: "));
 
             // Getting the name of the item that will be added
-            Console.WriteLine("Please enter the name of the item: ");
-            string name = Console.ReadLine();
+            string name = SafeNullInput("Please enter the name of the item: ");
 
             // Getting the quantity of the item
-            Console.WriteLine("Please enter the quantity of the item: ");
-            int quantity = int.Parse(Console.ReadLine());
+            int quantity = int.Parse(SafeNullInput("Please enter the quantity of the item: "));
 
             // Getting the price of the item
-            Console.WriteLine("Please enter the price of the item: ");
-            double price = double.Parse(Console.ReadLine());
+            double price = double.Parse(SafeNullInput("Please enter the price of the item: "));
 
             // Storing user input in a list
             inventory.Add(new Item(id, name, quantity, price));
@@ -54,18 +50,15 @@ namespace Inventory_Management_System
         // Updating the quantity
         public static void UpdateQuantity()
         {
-            Console.WriteLine("Do you want to add or substract items? (+/-):");
-            string answer = Console.ReadLine();
+            string answer = SafeNullInput("Do you want to add or substract items? (+/-): ");
 
             // Getting the ID of the item that you want to add
-            Console.WriteLine("Please enter the ID of the item you want to add: ");
-            int id = int.Parse(Console.ReadLine());
+            int id = int.Parse(SafeNullInput("Please enter the ID of the item you want to add: "));
 
             Item obj = GetId(id);
 
             // Getting the amount that is going to be added
-            Console.WriteLine("Please enter how many items you want to add/substract: ");
-            int addItems = Int32.Parse(Console.ReadLine());
+            int addItems = int.Parse(SafeNullInput("Please enter how many items you want to add/substract: "));
 
             // Showing current quantity
             Console.WriteLine($"old quantity: {obj.Quantity}");
@@ -91,8 +84,7 @@ namespace Inventory_Management_System
         public static void FindItem()
         {
             // Getting the ID of the item that you want to add          
-            Console.WriteLine("Please enter the ID of the item you want to find: ");
-            int id = int.Parse(Console.ReadLine());
+            int id = int.Parse(SafeNullInput("Please enter the ID of the item you want to add to the inventory: "));
 
             Console.WriteLine("\nID       Name       Quantity       Price\n");
 
@@ -126,6 +118,24 @@ namespace Inventory_Management_System
             }
 
             Console.WriteLine($"\nThe total of all items in the inventory is {total}\n");
+        }
+
+        // Helper method to make sure that the input is never null or empty
+        private static string SafeNullInput(string userInput)
+        {
+            string input;
+            do
+            {
+                Console.Write(userInput);
+                input = Console.ReadLine();
+
+                if (string.IsNullOrEmpty(input))
+                {
+                    Console.WriteLine("Input can never be empty. Please try again.");
+                }
+            } while (string.IsNullOrEmpty(input));
+
+            return input;
         }
     }
 }

@@ -12,6 +12,7 @@ namespace Inventory_Management_System
 
             while (answer != 6)
             {
+                Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("1 - Add items to the inventory");
                 Console.WriteLine("2 - Update item quantities (increase/decrease)");

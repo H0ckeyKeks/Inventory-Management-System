@@ -10,4 +10,4 @@ Create a system that manages an inventory of items in a store. The Item class sh
   •	Calculate the total value of all items in the inventory.
 
 
-I know there is a risk that my program might crash due to the various inputs maybe being null. I am currently working to make sure this doesn't happen (16 January 2025).
+I created a helper method to prevent my program from crashing if the input is null or empty.
